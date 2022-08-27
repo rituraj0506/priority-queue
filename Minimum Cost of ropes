@@ -1,0 +1,28 @@
+class Solution{
+    public:
+    long long kthsmallest(long long a[],long long n,long long k)
+    {
+    priority_queue<long>maxh,maxh1;
+        for(int i=0;i<n;i++)
+        {
+            maxh.push(a[i]);
+            if(maxh.size()>k)
+            maxh.pop();
+        }
+        return maxh.top();
+    }
+    
+    long long sumBetweenTwoKth( long long a[], long long n, long long k1, long long k2)
+    {
+        long long ax=kthsmallest(a,n,k1);
+        long long bx=kthsmallest(a,n,k2);
+         long long sum=0;
+         for(int i=0;i<n;i++)
+        {
+          if(a[i]>ax&&a[i]<bx)
+          sum+=a[i];
+        }
+     
+       return sum;
+    }
+};

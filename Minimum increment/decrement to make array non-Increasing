@@ -1,0 +1,31 @@
+Given an array a of length n, find the minimum number of operations required to make it non-increasing. You can select any one of the following
+operations and preform it any number of times on an array element.
+
+increment the array element by 1.
+decrement the array element by 1. 
+Example 1:
+Input:
+N = 4 
+array = {3, 1, 2, 1}
+Output: 1
+Explanation: 
+Decrement array[2] by 1. 
+New array becomes {3,1,1,1} which is non-increasing. 
+Therefore, only 1 step is required. 
+
+int minOperations(int *a,int n)
+    {
+        priority_queue<int,vector<int>,greater<int>>minh;
+        int ans=0;
+        for(int i=0;i<n;i++)
+        {
+            if(minh.size()>0&&minh.top()<a[i])
+            {
+                ans+=a[i]-minh.top();// 2-1
+                minh.push(a[i]);// ab a[i]=1 push 1
+                minh.pop();
+            }
+            minh.push(a[i]);
+        }
+        return ans;
+    }

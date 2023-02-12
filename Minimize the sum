@@ -1,0 +1,22 @@
+You are given N elements, you can remove any two elements from the list, note their sum, and add the sum to the list. 
+Repeat these steps while there is more than a single element in the list. The task is to minimize the sum of these chosen sums.
+
+int minimizeSum(int n, vector<int> arr) {
+    priority_queue<int,vector<int>,greater<int>>minh;
+     int k=0;
+     int sum=0,ans=0;
+       for(int i=0;i<n;i++)
+       {
+           minh.push(arr[i]);
+       }
+       while(minh.size()>1)
+       {
+          int x=minh.top();
+           minh.pop();
+           int y=minh.top();
+           minh.pop();
+           minh.push(x+y);
+           sum+=x+y;
+       }
+       return sum;
+    }
